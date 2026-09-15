@@ -23,7 +23,7 @@ export const useUserStore = defineStore('user', {
       console.log(id);
       if (id === null) return;
 
-      const res = await fetch(this.api + 'users/' + id);
+      const res = await fetch(`${this.api}/users/${id}`);
       if (!res.ok) {
         throw new Error(`User request failed with status ${res.status}`);
       }
@@ -73,7 +73,7 @@ export const useUserStore = defineStore('user', {
     },
     async deletePost(postId) {
       try {
-        const res = await fetch(`${this.api}posts/${postId}`, {
+        const res = await fetch(`${this.api}/posts/${postId}`, {
           method: 'DELETE',
         });
         if (!res.ok) {

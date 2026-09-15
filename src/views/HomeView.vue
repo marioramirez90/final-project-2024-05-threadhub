@@ -35,11 +35,11 @@ export default {
   },
   methods: {
     async fetchPosts() {
-      const response = await fetch(this.apiUrl + 'posts');
+      const response = await fetch(`${this.apiUrl}/posts`);
       this.posts = await response.json();
     },
     async postDelete(postId) {
-      await fetch(`${this.apiUrl}posts/${postId}`, {
+      await fetch(`${this.apiUrl}/posts/${postId}`, {
         method: 'DELETE',
       });
       await this.fetchPosts();
