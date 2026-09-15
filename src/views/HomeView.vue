@@ -22,12 +22,13 @@
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
 import ProfileViewFilter from '@/components/HomeView/ProfileViewFilter.vue';
 import PostListContainer from '@/components/HomeView/PostListContainer.vue';
+import { API_URL } from '@/config/api.js';
 
 export default {
   data() {
     return {
       posts: [],
-      apiUrl: import.meta.env.VITE_API_URL,
+      apiUrl: API_URL,
       selectedFilter: 'all',
       wordSearch: '',
     };

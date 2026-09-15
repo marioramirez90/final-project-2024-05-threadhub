@@ -14,6 +14,7 @@ import LastPostListContainer from '@/components/ProfileView/LastPostListContaine
 import ProfileViewHeader from '@/components/ProfileView/ProfileViewHeader.vue';
 import ProfileViewStatus from '@/components/ProfileView/ProfileViewStatus.vue';
 import HomeViewHeader from '@/components/HomeViewHeader.vue';
+import { API_URL } from '@/config/api.js';
 
 export default {
   components: { ProfileViewHeader, ProfileViewStatus, LastPostListContainer, HomeViewHeader },
@@ -43,7 +44,7 @@ export default {
   async created() {
     this.currentUserId = localStorage.getItem('userId');
 
-    const response = await fetch(import.meta.env.VITE_API_URL + 'posts');
+    const response = await fetch(`${API_URL}/posts`);
     const data = await response.json();
     // console.log(data);
 

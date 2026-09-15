@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
 import router from '@/router/index.js';
+import { API_URL } from '@/config/api.js';
 
 export const useUserStore = defineStore('user', {
   state() {
     return {
       user: JSON.parse(localStorage.getItem('user')) || null,
-      api: import.meta.env.VITE_API_URL || 'http://localhost:3000/',
+      api: API_URL,
       editDisabled: false,
     };
   },

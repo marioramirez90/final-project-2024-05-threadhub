@@ -25,6 +25,7 @@
 
 <script>
 import { useUserStore } from '@/stores/user';
+import { API_URL } from '@/config/api.js';
 
 export default {
   data() {
@@ -40,8 +41,7 @@ export default {
   methods: {
     async checkUser() {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/';
-        const response = await fetch(apiUrl + 'users');
+        const response = await fetch(`${API_URL}/users`);
         if (!response.ok) {
           throw new Error(`Login request failed with status ${response.status}`);
         }

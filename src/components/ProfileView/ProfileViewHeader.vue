@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { API_URL } from '@/config/api.js';
+
 export default {
   data() {
     return {
@@ -22,13 +24,13 @@ export default {
   async created() {
     this.userId = localStorage.getItem('userId');
 
-    const response = await fetch(import.meta.env.VITE_API_URL + 'users/' + this.userId);
+    const response = await fetch(`${API_URL}/users/${this.userId}`);
     const data = await response.json();
 
     // console.log(data);
     this.user = data;
 
-    const res = await fetch(import.meta.env.VITE_API_URL + 'posts');
+    const res = await fetch(`${API_URL}/posts`);
     const dataPost = await res.json();
     // console.log(dataPost);
     this.posts = dataPost;

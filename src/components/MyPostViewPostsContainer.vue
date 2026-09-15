@@ -20,6 +20,7 @@
 </template>
 <script>
 import { useUserStore } from '@/stores/user';
+import { API_URL } from '@/config/api.js';
 export default {
   data() {
     return {
@@ -32,7 +33,7 @@ export default {
   async created() {
     const userId = localStorage.getItem('userId');
     console.log(userId);
-    const res = await fetch(import.meta.env.VITE_API_URL + 'posts');
+    const res = await fetch(`${API_URL}/posts`);
     const data = await res.json();
     console.log(data);
     const filterPost = data.filter((post) => post.userId === userId);

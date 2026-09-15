@@ -27,6 +27,8 @@
   </div>
 </template>
 <script>
+import { API_URL } from '@/config/api.js';
+
 export default {
   data() {
     return {
@@ -55,7 +57,7 @@ export default {
         downvotes: 0,
       };
 
-      const response = await fetch('http://localhost:3000/posts', {
+      const response = await fetch(`${API_URL}/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

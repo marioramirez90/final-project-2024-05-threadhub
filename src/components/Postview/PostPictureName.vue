@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { API_URL } from '@/config/api.js';
+
 export default {
   props: {
     userId: null,
@@ -26,7 +28,7 @@ export default {
   methods: {
     async fetchUser() {
       if (this.userId) {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}users/${this.userId}`);
+        const response = await fetch(`${API_URL}/users/${this.userId}`);
         const data = await response.json();
         this.user = data.username;
         console.log(this.user);

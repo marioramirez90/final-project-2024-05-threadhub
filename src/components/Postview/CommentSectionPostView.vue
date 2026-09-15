@@ -10,6 +10,8 @@
   </div>
 </template>
 <script>
+import { API_URL } from '@/config/api.js';
+
 export default {
   props: {
     isEdit: Boolean,
@@ -29,18 +31,18 @@ export default {
     },
   },
   async created() {
-    // const res = await fetch(import.meta.env.VITE_API_URL + `comments`);
+    // const res = await fetch(`${API_URL}/comments`);
     // const data = await res.json();
     // // console.log(data);
     // const filter = data.filter((comment) => comment.postId === this.postId);
     // this.comments = filter;
     // // console.log(this.comments);
-    const res = await fetch(import.meta.env.VITE_API_URL + `comments`);
+    const res = await fetch(`${API_URL}/comments`);
     const data = await res.json();
 
     const filteredComments = data.filter((comment) => comment.postId === this.postId);
 
-    const response = await fetch(import.meta.env.VITE_API_URL + `users`);
+    const response = await fetch(`${API_URL}/users`);
     const file = await response.json();
     const commentsWithUsernames = filteredComments.map((comment) => {
       const user = file.find((user) => user.id === comment.userId);

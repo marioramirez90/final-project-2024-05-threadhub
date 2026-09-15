@@ -31,6 +31,7 @@ import CommentSectionPostView from '@/components/Postview/CommentSectionPostView
 import PostPictureName from '@/components/Postview/PostPictureName.vue';
 import InteraktionPostView from '@/components/Postview/InteraktionPostView.vue';
 import PostViewMenu from '@/components/Postview/PostViewMenu.vue';
+import { API_URL } from '@/config/api.js';
 export default {
   components: {
     HomeViewHeader,
@@ -73,7 +74,7 @@ export default {
       this.post.text = newText;
     },
     async savePost() {
-      const response = await fetch(import.meta.env.VITE_API_URL + `posts/${this.postId}`, {
+      const response = await fetch(`${API_URL}/posts/${this.postId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ export default {
     },
   },
   async created() {
-    const response = await fetch(import.meta.env.VITE_API_URL + `posts/${this.postId}`);
+    const response = await fetch(`${API_URL}/posts/${this.postId}`);
     this.post = await response.json();
     console.log(this.post);
 
