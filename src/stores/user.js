@@ -5,7 +5,7 @@ export const useUserStore = defineStore('user', {
   state() {
     return {
       user: JSON.parse(localStorage.getItem('user')) || null,
-      api: import.meta.env.VITE_API_URL || 'http://localhost:3000/',
+      api: import.meta.env.VITE_API_URL,
       editDisabled: false,
     };
   },
@@ -22,10 +22,7 @@ export const useUserStore = defineStore('user', {
       console.log(id);
       if (id === null) return;
 
-      const res = await fetch(this.api + 'users/' + id);
-      if (!res.ok) {
-        throw new Error(`User request failed with status ${res.status}`);
-      }
+      const res = await fetch(import.meta.env.VITE_API_URL + 'users/' + id);
       const data = await res.json();
 
       this.user = {
