@@ -39,24 +39,29 @@ export default {
 
   methods: {
     async checkUser() {
-      const response = await fetch('http://localhost:3000/users');
-      const users = await response.json();
-      const foundUser = users.find(
-        (user) => user.username === this.username && user.password === this.password,
-      );
-      this.user = foundUser;
-      // this.checkAdmin();
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/';
+        const response = await fetch(apiUrl + 'users');
+        if (!response.ok) {
+          throw new Error(`Login request failed with status ${response.status}`);
+        }
 
-      if (foundUser) {
+        const users = await response.json();
+        const foundUser = users.find(
+          (user) => user.username === this.username && user.password === this.password,
+        );
+
+        if (!foundUser) {
+          throw new Error('Invalid credentials');
+        }
+
+        this.user = foundUser;
         localStorage.setItem('userId', foundUser.id);
-        console.log(foundUser);
         const userStore = useUserStore();
-        console.log(userStore);
         await userStore.getUserInfo();
-
         this.$router.push('/home');
-      } else {
-        this.errorMessage = 'Benutzername oder Passwort ist falsch';
+      } catch (error) {
+        console.error('Login failed:', error);
         this.showErrorMassages = true;
         this.username = '';
         this.password = '';
