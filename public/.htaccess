@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /projekte/threadhub/
+
+# Vorhandene Dateien und Verzeichnisse direkt ausliefern.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Vue-Routen an die SPA-Einstiegsdatei weiterleiten.
+RewriteRule ^ index.html [L]
