@@ -43,7 +43,7 @@ export default {
       this.deleteId = postId;
     },
     linkMyPost(postId) {
-      this.$router.push(`post/${postId}`);
+      this.$router.push({ name: 'postview', params: { postId } });
     },
     adminChoice() {
       const user = JSON.parse(localStorage.getItem('user'));

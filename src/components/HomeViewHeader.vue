@@ -1,13 +1,13 @@
 <template>
   <header class="homeview-header">
-    <a class="logo" href="/home">ThreadHub</a>
+    <RouterLink class="logo" :to="{ name: 'home' }">ThreadHub</RouterLink>
     <div class="dropdown">
       <button class="dropdown-button">
         <img src="../assets/images/threadhub.png" alt="Logo der ThreadHub App" />
       </button>
       <div class="dropdown-content">
-        <a href="/profile">Mein Profil</a>
-        <a href="/meine-threads">Meine Threads</a>
+        <RouterLink :to="{ name: 'profile' }">Mein Profil</RouterLink>
+        <RouterLink :to="{ name: 'mypostview' }">Meine Threads</RouterLink>
         <a href="#">Einstellungen</a>
         <a href="#" @click="logout">Ausloggen</a>
       </div>
